@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}search{% endblock title %}
+{% block main-content %} 
+
+{% if sn %}
+<h1>Search result </h1>
+<br>
+{% for i in sn %}
+<div class="col-sm-6">
+    <div class="card m-2">
+     <a href="/desc/{{i.dslug}}"><img src="{{i.image.url}}" alt="" class="card-img-top" height="200px"></a>
+   
+     <div class="card-footer">
+      <small class="text-dark"><a href="{% url 'query' %}"><b>{{i.stockname}}</b></a></small>
+      
+      </div>
+     </div>
+    </div>
+   
+{% endfor %}
+
+{% else %}
+
+<h1>Search result not found !!!</h1>
+
+{% endif %}
+
+
+{% endblock main-content %}

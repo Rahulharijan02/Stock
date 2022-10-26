@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+{% block main-content %} 
+<br>
+<div><form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="er text-danger ">{{error}}</p>
+        {% endfor %}
+        {% endif %}
+        {% for fm in form %}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+        <small {% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}} </small>
+        {% endfor %}
+        {% endif %} <br>
+        <span>Existing User <a href class="{% url 'login' %}">Login</a></span>
+</div>    
+{% endblock main-content %}
+
+
+
+

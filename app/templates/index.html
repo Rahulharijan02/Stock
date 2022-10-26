@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}index{% endblock title %}
+{% block main-content %} 
+
+
+	   
+<h2 align="center"> <em> LIST OF STOCK MARKET </em> </h2>  
+<br /> <br />  
+<div class="container">
+  <div class="flex">
+  </div>
+  <div class="row">
+   {% for s in st %}
+    <div class="col-sm-6">
+     <div class="card m-2">
+      <a href="/desc/{{s.dslug}}"><img src="{{s.image.url}}" alt="" class="card-img-top" height="200px"></a>
+      <div class="card-footer">
+       <small class="text-dark"><a href="{% url 'query' %}"><b>{{s.stockname}}</b></a></small>
+      
+      </div>  
+     </div>
+    </div>
+   {% endfor %}
+  </div>
+ </div>
+
+   <a href = "#" id = "loadMore"> Load More </a>
+</div>
+<script>
+  $(document).ready (function () {
+    $(".card").slice(0, 4).show();
+    $("#loadMore").on("click", function(e){
+      e.preventDefault();
+      $(".card:hidden").slice(0, 4).slideDown();
+      if ($(".card:hidden").length == 0) {
+        $("#loadMore").text("No Content").addClass("noCard");
+      }
+    });
+    })
+  </script>
+{% endblock main-content %}
+
+  </div> -->
